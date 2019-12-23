@@ -4,7 +4,7 @@
 
 - [x] Ambiente e conceitos
 - [x] Começando com flex
-- [ ] Alinhamento de conteúdo
+- [x] Alinhamento de conteúdo
 - [ ] Redimensionamento
 - [ ] Configurando wrap de itens
 - [ ] Ordenação
@@ -33,3 +33,26 @@ flex-direction: column-reverse;
 ```
 
 ## Alinhamento de conteúdo
+
+```
+align-items: ;
+justify-content: ;
+```
+- Tudo se baseia na flex-direction.  
+- Quando ```flex-direction: row;``` ```align-items``` alinha sempre verticalmente e o ```justify-content``` alinha horizontalmente.  
+- Quando ```flex-direction: column;``` ```align-items``` alinha horizontalmente e o ```justify-content``` alinha verticalmente.  
+- flex-direction eixo Y, align-items eixo X.  
+- justify-content mesmo eixo que flex-direction.  
+- Valores padrão de ambos: 
+```
+flex-start
+flex-end
+center
+``` 
+- Valores exclusivos p/ ```justify-content```
+```
+justify-content: space-between;
+justify-content: space-around;
+```
+
+## Redimensionamento
