@@ -5,24 +5,15 @@ html, body, #app {
 
 #app {
   display: flex;
-  flex-direction: row;
-
-  /* align-items: flex-start; padrao */ 
-  /* align-items: flex-end; */
-  /* align-items: center; */
-  /* justify-content: flex-start; padrao */
-  /* justify-content: center; */
-  /* justify-content: space-around; */
-
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-
 }
 
 .box {
-  width: 60px;
+  width: 450px;
   height: 60px;
   background: red;
   margin: 5px;
+  /* flex-shrink: 0; */
+  /* flex-grow: 1; */
+  /* flex: 1 0; */
+  flex: 1;
 }
