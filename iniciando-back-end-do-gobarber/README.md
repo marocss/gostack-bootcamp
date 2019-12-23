@@ -2,7 +2,7 @@
 
 ### Aulas
 
-- [ ] Configurando estrutura
+- [x] Configurando estrutura
 - [ ] Nodemon & Sucrase
 - [ ] Conceitos do Docker
 - [ ] Configurando Docker
@@ -21,3 +21,13 @@
 - [ ] Validando dados de entrada
 
 ## Configurando estrutura
+
+- Criar projeto
+- Instalar express
+- Criar src com server, app e routes
+  - app: configuração do servidor express
+  - routes: rotas da aplicação
+  - server: cria o servidor
+- JSON Viwer. Extensão chrome p/ json: https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh
+
+## Nodemon & Sucrase
