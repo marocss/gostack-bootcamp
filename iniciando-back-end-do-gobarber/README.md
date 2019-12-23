@@ -10,7 +10,7 @@
 - [x] ESLint, Prettier & EditorConfig
 - [x] Configurando Sequelize
 - [x] Migration de usuário
-- [ ] Model de usuário
+- [x] Model de usuário
 - [ ] Criando loader de models
 - [ ] Cadastro de usuários
 - [ ] Gerando hash da senha
@@ -260,3 +260,26 @@ yarn sequelize db:migrate
 - `sequelize db:migrate:undo:all` Desfaz todas as migrations feitas.
 
 ## Model de usuário
+
+- Criar model de usuario para manipular os dados. Criar, alterar, deletar usuarios
+- `models/User.js`
+```
+import Sequelize, { Model } from 'sequelize'
+
+class User extends Model {
+  static init(sequelize) {
+    super.init({
+      name: Sequelize.STRING,
+      email: Sequelize.STRING,
+      password_hash: Sequelize.STRING,
+      provider: Sequelize.BOOLEAN,
+    }, {
+      sequelize,
+    })
+  }
+}
+
+export default User
+```
+
+## Criando loader de models
