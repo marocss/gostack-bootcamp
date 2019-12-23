@@ -9,7 +9,7 @@
 - [x] Sequelize & MVC
 - [x] ESLint, Prettier & EditorConfig
 - [x] Configurando Sequelize
-- [ ] Migration de usuário
+- [x] Migration de usuário
 - [ ] Model de usuário
 - [ ] Criando loader de models
 - [ ] Cadastro de usuários
@@ -209,3 +209,54 @@ yarn add pg pg-hstore
 ```
 
 ## Migration de usuário
+
+- Criar primeira migration com sequelize-cli
+```
+yarn sequelize migration:create --name=<MYMIGRATIONNAME>
+```
+- Editar aquivo criado dentro de `migrations`
+```
+up: (queryInterface, Sequelize) => {
+  return queryInterface.createTable('<tableName>', { 
+    id: {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+      autoIncrement: true,
+      primaryKey: true,
+    },
+    name: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    email: {
+      type: Sequelize.STRING,
+      allowNull: false,
+      unique: true,
+    },
+    password_hash: {
+      type: Sequelize.STRING,
+      allowNull: false,
+    },
+    created_at: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+    updated_at: {
+      type: Sequelize.DATE,
+      allowNull: false,
+    },
+  })
+},
+
+down: (queryInterface, Sequelize) => {
+  return queryInterface.dropTable('<tableName>')
+}
+```
+- Rodar primeira migration para criar tabela no db
+```
+yarn sequelize db:migrate
+```
+- `sequelize db:migrate:undo` Para efetuar correções antes de compartilhar ou publicar codigo. desfaz ultima migration feita.
+- `sequelize db:migrate:undo:all` Desfaz todas as migrations feitas.
+
+## Model de usuário
