@@ -12,7 +12,7 @@
 - [x] Utilizando Nodemon
 - [x] CRUD
 - [x] Middlewares
-- [ ] Debugando aplicação
+- [x] Debugando aplicação
 
 ## Instalando Node & NPM
 
@@ -110,3 +110,11 @@ Base de toda aplicação express. Recebe req e res e manipula de alguma forma. I
 
 - Middleware global
 - Middleware local
+
+## Debugando aplicação
+
+Debug utilizando debugger do vscode
+
+- debug > launch.json
+- breakpoint
+- monitorar valor de variáveis
