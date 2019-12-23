@@ -6,7 +6,7 @@
 - [x] Nodemon & Sucrase
 - [x] Conceitos do Docker
 - [x] Configurando Docker
-- [ ] Sequelize & MVC
+- [x] Sequelize & MVC
 - [ ] ESLint, Prettier & EditorConfig
 - [ ] Configurando Sequelize
 - [ ] Migration de usuário
@@ -96,3 +96,14 @@ docker run --name <dbname> -e POSTGRES_PASSWORD=<mysecretpassword> -p 5432:5432 
 - ```docker logs <dbname>``` p/ visualizar logs caso erro ocorra
 
 ## Sequelize & MVC
+
+Sequelize - ORM pra node.js (relational dbs)
+
+- ORM
+- Manipulação dos dados
+- Migrations
+- Seeds
+- Arquitetura MVC
+- A face de um controller
+
+## ESLint, Prettier & EditorConfig
