@@ -10,7 +10,7 @@
 - [x] Query & Route params
 - [x] Utilizando Insomnia
 - [x] Utilizando Nodemon
-- [ ] CRUD
+- [x] CRUD
 - [ ] Middlewares
 - [ ] Debugando aplicação
 
@@ -99,3 +99,7 @@ ou criar script
 ```
 yarn dev
 ```
+
+## CRUD
+
+- Create, Read, Update, Delete

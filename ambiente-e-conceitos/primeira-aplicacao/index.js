@@ -2,20 +2,51 @@ const express = require('express')
 
 const server = express()
 
-/*
-Query params = ?teste=1
-Route params =  /users/1
-Request body =  { "nome": "Marcos", "email": "marcos@email.com" }
-*/
+// informar que o corpo da requisição sera json
+server.use(express.json())
 
-// exemplo de banco de dados
-const users = ['User 1', 'Rogerio', 'User 3']
+/* CRUD */
+const users = ['Richard', 'Rogerio', 'Rafael']
 
-// http://localhost:3000/users/2
+// rota para listar todos usuarios
+server.get('/users', (req, res) => {
+  return res.json(users)
+})
+
 server.get('/users/:index', (req, res) => {
   const { index } = req.params
 
   return res.json(users[index])
 })
+
+// criar novo usuario
+server.post('/users', (req, res) => {
+  const { name } = req.body
+
+  users.push(name)
+
+  return res.json(users)
+})
+
+// editar usuario
+server.put('/users/:index', (req, res) => {
+  const { index } = req.params;
+  const { name } = req.body
+
+  users[index] = name
+
+  return res.json(users)
+})
+
+// excluir usuario
+server.delete('/users/:index', (req, res) => {
+  const { index } = req.params;
+
+  users.splice(index, 1)
+
+  // return res.json(users)
+  return res.send()
+})
+
 
 server.listen(3000)
