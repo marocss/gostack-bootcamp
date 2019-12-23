@@ -4,7 +4,7 @@
 
 - [x] Configurando estrutura
 - [x] Nodemon & Sucrase
-- [ ] Conceitos do Docker
+- [x] Conceitos do Docker
 - [ ] Configurando Docker
 - [ ] Sequelize & MVC
 - [ ] ESLint, Prettier & EditorConfig
@@ -74,3 +74,8 @@ yarn dev:debug
 ```
 
 ## Conceitos do Docker
+
+- Como funciona?
+- Principais conceitos
+
+## Configurando Docker
