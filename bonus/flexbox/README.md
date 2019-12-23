@@ -6,7 +6,7 @@
 - [x] Começando com flex
 - [x] Alinhamento de conteúdo
 - [x] Redimensionamento
-- [ ] Configurando wrap de itens
+- [x] Configurando wrap de itens
 - [ ] Ordenação
 - [ ] Configurando app
 - [ ] Header
@@ -72,3 +72,10 @@ flex: 1 0;
 ```
 
 ## Configurando wrap de itens
+
+Quebra de linhas.
+
+- ```flex-wrap``` quebra linha
+- ```align-content``` alinhar elementos quando estão em mais de uma linha. linha quebrada.
+
+## Ordenação
