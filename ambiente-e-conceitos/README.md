@@ -9,7 +9,7 @@
 - [x] Criando aplicação
 - [x] Query & Route params
 - [x] Utilizando Insomnia
-- [ ] Utilizando Nodemon
+- [x] Utilizando Nodemon
 - [ ] CRUD
 - [ ] Middlewares
 - [ ] Debugando aplicação
@@ -76,3 +76,26 @@ Aplicação para testar rotas
 
 - https://insomnia.rest/
 - Getting started: https://support.insomnia.rest/article/11-getting-started
+
+## Utilizando Nodemon
+
+Reinicia servidor de forma automática.  
+https://github.com/remy/nodemon
+
+- Instalar
+```
+yarn add nodemon -D
+```
+- Executar 
+```
+yarn nodemon index.js
+```
+ou criar script
+```
+"scripts": {
+  "dev": "nodemon index.js"
+}
+```
+```
+yarn dev
+```
