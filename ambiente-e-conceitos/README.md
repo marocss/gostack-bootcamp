@@ -11,7 +11,7 @@
 - [x] Utilizando Insomnia
 - [x] Utilizando Nodemon
 - [x] CRUD
-- [ ] Middlewares
+- [x] Middlewares
 - [ ] Debugando aplicação
 
 ## Instalando Node & NPM
@@ -103,3 +103,10 @@ yarn dev
 ## CRUD
 
 - Create, Read, Update, Delete
+
+## Middlewares
+
+Base de toda aplicação express. Recebe req e res e manipula de alguma forma. Interceptador. Alterar variaveis req e res.
+
+- Middleware global
+- Middleware local
