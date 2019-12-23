@@ -8,7 +8,7 @@
 - [x] Conceitos de API REST
 - [x] Criando aplicação
 - [x] Query & Route params
-- [ ] Utilizando Insomnia
+- [x] Utilizando Insomnia
 - [ ] Utilizando Nodemon
 - [ ] CRUD
 - [ ] Middlewares
@@ -69,3 +69,10 @@ yarn add express
 ## Query & Route params
 
 - Query / Route params and request body
+
+## Utilizando Insomnia
+
+Aplicação para testar rotas
+
+- https://insomnia.rest/
+- Getting started: https://support.insomnia.rest/article/11-getting-started
