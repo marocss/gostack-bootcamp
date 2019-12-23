@@ -3,7 +3,7 @@
 ### Aulas
 
 - [x] Configurando estrutura
-- [ ] Nodemon & Sucrase
+- [x] Nodemon & Sucrase
 - [ ] Conceitos do Docker
 - [ ] Configurando Docker
 - [ ] Sequelize & MVC
@@ -31,3 +31,46 @@
 - JSON Viwer. Extensão chrome p/ json: https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh
 
 ## Nodemon & Sucrase
+
+- Nodemon. Detecta alterações no código e reinicia o servidor.
+- Sucrase. Utilizar nova sintaxe do JS no node (```import``` ao invés de ```require```)
+```
+yarn add sucrase nodemon -D
+```
+- Executar pelo sucrase diretamente
+```
+yarn sucrase-node src/server.js
+```
+ou criar script
+```
+"scripts": {
+  "dev": "nodemon src/server.js"
+}
+```
+e ```nodemon.json```
+```
+{
+  "execMap": {
+    "js": "node -r sucrase/register"
+  }
+}
+```
+- Alterar processo de debug do vscode
+```
+"scripts": {
+...
+    "dev.debug": "nodemon --inspect src/server.js"
+  }
+```
+```
+yarn dev:debug
+```
+- Alterar launch.json
+```
+"request": "attach",
+"restart": true,
+"protocol": "inspector"
+"program": "${workspaceFolder}/index.js" // delete
+```
+
+## Conceitos do Docker

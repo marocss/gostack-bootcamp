@@ -1,5 +1,5 @@
-const express = require('express')
-const routes = require('./routes')
+import express from 'express'
+import routes from './routes'
 
 // constructor - metodo chamado automaticamente toda vez que classe for 
 //  instanciada
@@ -27,4 +27,4 @@ class App {
 }
 
 // exportar nova instancia de App
-module.exports = new App().server // exportando server diretamente
+export default new App().server // exportando server diretamente
