@@ -8,7 +8,7 @@
 - [x] Configurando Docker
 - [x] Sequelize & MVC
 - [x] ESLint, Prettier & EditorConfig
-- [ ] Configurando Sequelize
+- [x] Configurando Sequelize
 - [ ] Migration de usuário
 - [ ] Model de usuário
 - [ ] Criando loader de models
@@ -156,3 +156,56 @@ insert_final_newline = true
 ```
 
 ## Configurando Sequelize
+
+- Configurar estrutura de pastas
+```
+src
+ |- config
+ |  |- database.js
+ |- database
+ |  |- migrations
+ |  |- seeds
+ |- app
+ |  |- controllers
+ |  |- models
+```
+- Adicionar sequelize
+```
+yarn add sequelize
+```
+- Adicionar sequelize-cli
+```
+yarn add sequelize-cli -D
+```
+- ```touch .sequelizerc``` - exporta caminho dos arquivos e pastas. utilizar sintaxe antiga. (não usar import)
+```
+const { resolve } = require('path')
+
+module.exports = {
+  config: resolve(__dirname, 'src', 'config', 'database.js'),
+  'models-path': resolve(__dirname, 'src', 'app', 'models'),
+  'migrations-path': resolve(__dirname, 'src', 'database', 'migrations'),
+  'seeders-path': resolve(__dirname, 'src', 'database', 'seeds')
+}
+```
+- Criar ```database.js```
+```
+module.exports = {
+  dialect: '',
+  host: '',
+  username: '',
+  password: '',
+  database: '',
+  define: {
+    timestamps: true,
+    underscored: true,
+    underscoredAll: true,
+  },
+}
+```
+- Adicionar dependencias para dialect postgres
+```
+yarn add pg pg-hstore
+```
+
+## Migration de usuário
