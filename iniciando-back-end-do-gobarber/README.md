@@ -5,7 +5,7 @@
 - [x] Configurando estrutura
 - [x] Nodemon & Sucrase
 - [x] Conceitos do Docker
-- [ ] Configurando Docker
+- [x] Configurando Docker
 - [ ] Sequelize & MVC
 - [ ] ESLint, Prettier & EditorConfig
 - [ ] Configurando Sequelize
@@ -79,3 +79,20 @@ yarn dev:debug
 - Principais conceitos
 
 ## Configurando Docker
+
+https://docs.docker.com/docker-for-mac/
+
+- Instalar (https://docs.docker.com/docker-for-mac/install/)
+- Criar serviço de db postgres (https://hub.docker.com/_/postgres)
+```
+docker run --name <dbname> -e POSTGRES_PASSWORD=<mysecretpassword> -p 5432:5432 -d postgres
+```
+- ```-p``` p/ redirecionamento de porta
+- Verificar se container esta executando ```docker ps```
+- Instalar Postbird p/ visualizar dados do postgres (https://electronjs.org/apps/postbird)
+- Parar containers ```docker stop <dbname>```
+- ```docker ps -a``` p/ visualizar todos os containers na maquina
+- Iniciar container ```docker start <dbname>```
+- ```docker logs <dbname>``` p/ visualizar logs caso erro ocorra
+
+## Sequelize & MVC
