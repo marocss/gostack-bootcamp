@@ -7,7 +7,7 @@
 - [x] Conceitos do Node.js
 - [x] Conceitos de API REST
 - [x] Criando aplicação
-- [ ] Query & Route params
+- [x] Query & Route params
 - [ ] Utilizando Insomnia
 - [ ] Utilizando Nodemon
 - [ ] CRUD
