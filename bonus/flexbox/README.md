@@ -3,7 +3,7 @@
 ### Aulas
 
 - [x] Ambiente e conceitos
-- [ ] Começando com flex
+- [x] Começando com flex
 - [ ] Alinhamento de conteúdo
 - [ ] Redimensionamento
 - [ ] Configurando wrap de itens
@@ -23,3 +23,13 @@
 - ```open with...```
 
 ## Começando com flex
+
+```display: flex;``` usar p/ trabalhar no elemento por fora dos elementos que deseja alinhar.  
+```flex-direction: row;``` padrão. todos itens se ordenam em linha.  
+```
+flex-direction: column;
+flex-direction: row-reverse;
+flex-direction: column-reverse;
+```
+
+## Alinhamento de conteúdo
