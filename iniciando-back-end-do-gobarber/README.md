@@ -11,7 +11,7 @@
 - [x] Configurando Sequelize
 - [x] Migration de usuário
 - [x] Model de usuário
-- [ ] Criando loader de models
+- [x] Criando loader de models
 - [ ] Cadastro de usuários
 - [ ] Gerando hash da senha
 - [ ] Conceitos de JWT
@@ -283,3 +283,33 @@ export default User
 ```
 
 ## Criando loader de models
+
+Realizar conexão com db definido em `config/database.js`. Carregar todos os models da aplicação.   
+- Criar `database/index.js`. Realiza conexão e carrega models
+```
+import Sequelize from 'sequelize'
+import User from '../app/models/User'
+import databaseConfig from '../config/database';
+
+const models = [User];
+
+class Database {
+  constructor() {
+    this.init()
+  }
+
+  init() {
+    this.connection = new Sequelize(databaseConfig);
+
+    models.map(model => model.init(this.connection))
+  }
+}
+
+export default new Database()
+```
+- Chamar `index.js` em algum lugar. Adicionar ao app.js
+```
+import './database'
+```
+
+## Cadastro de usuários

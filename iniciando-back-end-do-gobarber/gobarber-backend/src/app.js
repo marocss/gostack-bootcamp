@@ -1,6 +1,8 @@
 import express from 'express';
 import routes from './routes';
 
+import './database';
+
 // constructor - metodo chamado automaticamente toda vez que classe for
 //  instanciada
 class App {

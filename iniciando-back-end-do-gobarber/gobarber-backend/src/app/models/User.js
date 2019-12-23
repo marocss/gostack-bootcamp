@@ -1,6 +1,7 @@
 import Sequelize, { Model } from 'sequelize';
 
 class User extends Model {
+  // sequelize = conexão com o db
   static init(sequelize) {
     super.init(
       // metodo init da classe Model
