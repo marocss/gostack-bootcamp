@@ -7,7 +7,7 @@
 - [x] Conceitos do Docker
 - [x] Configurando Docker
 - [x] Sequelize & MVC
-- [ ] ESLint, Prettier & EditorConfig
+- [x] ESLint, Prettier & EditorConfig
 - [ ] Configurando Sequelize
 - [ ] Migration de usuário
 - [ ] Model de usuário
@@ -107,3 +107,52 @@ Sequelize - ORM pra node.js (relational dbs)
 - A face de um controller
 
 ## ESLint, Prettier & EditorConfig
+
+Padronizar escrita do código. 
+- Adicionar eslint
+```
+yarn add eslint -D
+```
+- Iniciar
+```
+yarn eslint --init
+```
+- Style guide airbnb
+- ```rm package-lock.json```
+- ```yarn```
+- Fazer fix on save
+- Adicionar configuraçoes do vs code ```settings.json```
+- Adicionar rules
+```
+rules: {
+  "prettier/prettier": "error",
+}
+```
+- Instalar Prettier
+```
+yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
+```
+- Adicionar prettier ao ```extends```
+```
+extends: [..., 'prettier']
+```
+- Adicionar ```plugins```
+```
+plugins: ['prettier']
+```
+- Criar ```.prettierrc```
+```
+{
+  "singleQuote: true,
+  "trailingComma": "es5"
+}
+```
+- ```yarn eslint --fix <FOLDERTOFIX> --ext .js``` realizar fix automatico
+- Adicionar EditorConfig (equipe que utiliza editores diferentes)
+- ```.editorconfig```
+```
+trim_trailing_whitespace = true
+insert_final_newline = true
+```
+
+## Configurando Sequelize

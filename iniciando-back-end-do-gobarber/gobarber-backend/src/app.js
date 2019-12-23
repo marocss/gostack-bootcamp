@@ -1,30 +1,29 @@
-import express from 'express'
-import routes from './routes'
+import express from 'express';
+import routes from './routes';
 
-// constructor - metodo chamado automaticamente toda vez que classe for 
+// constructor - metodo chamado automaticamente toda vez que classe for
 //  instanciada
 class App {
   constructor() {
     // definir variavel server
-    this.server = express()
+    this.server = express();
 
     // chamar metodos
-    this.middlewares()
-    this.routes()
+    this.middlewares();
+    this.routes();
   }
 
   // metodo middlewares
   middlewares() {
-    this.server.use(express.json())
+    this.server.use(express.json());
   }
 
   // metodo routes
   routes() {
     // utilizar rotas de outro arquivo
-    this.server.use(routes)
+    this.server.use(routes);
   }
-
 }
 
 // exportar nova instancia de App
-export default new App().server // exportando server diretamente
+export default new App().server; // exportando server diretamente
