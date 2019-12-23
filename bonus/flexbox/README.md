@@ -7,7 +7,7 @@
 - [x] Alinhamento de conteúdo
 - [x] Redimensionamento
 - [x] Configurando wrap de itens
-- [ ] Ordenação
+- [X] Ordenação
 - [ ] Configurando app
 - [ ] Header
 - [ ] Banner
@@ -79,3 +79,7 @@ Quebra de linhas.
 - ```align-content``` alinhar elementos quando estão em mais de uma linha. linha quebrada.
 
 ## Ordenação
+
+- ```order: <NUM>``` ordena os elementos na sequencia inserida.
+
+## Configurando app

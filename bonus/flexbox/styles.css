@@ -4,17 +4,26 @@ html, body, #app {
 }
 
 #app {
-  display: flex;
-  flex-wrap: wrap-reverse;
-
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* align-content: center; */
+  display: flex; 
 }
 
 .box {
-  width: 250px;
+  width: 150px;
   height: 60px;
   background: red;
   margin: 5px;
+}
+
+.red {
+  order: 1;
+}
+
+.green {
+  background: lightgreen;
+  order: 2;
+}
+
+.blue {
+  background: blue;
+  order: 0;
 }
