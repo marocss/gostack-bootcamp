@@ -4,16 +4,14 @@ const server = express();
 
 server.use(express.json());
 
-
-// store all projects
+// store projects
 const projects = [];
 
-// total number of requests made to the API
+// number of requests made to API
 let totalRequests = 0;
 
 
 /* Middlewares */
-/* Global middleware */
 server.use((req, res, next) => {
   /* 
   Logs the total number of requests made to API.
@@ -27,7 +25,6 @@ server.use((req, res, next) => {
   return next();
 });
 
-/* Local middleware */
 function checkExists(req, res, next) {
   /*
   Checks if a project exists.
@@ -42,14 +39,13 @@ function checkExists(req, res, next) {
   const { id } = req.params;
 
   // search for project
-  const project = projects.find(p => p.id === id);
+  const project = projects.find(project => project.id === id);
 
   if (!project) {
     // project not found
-    return res.status(404).json({ message: 'Project was not found.' });
+    return res.status(404).json({ message: 'Project not found.' });
   }
 
-  // project exists
   return next();
 }
 
@@ -64,7 +60,7 @@ server.post('/projects', (req, res) => {
       title: A title for the new project.
 
     Returns:
-      Returns all existing projects.
+      Returns all projects.
   */
 
   const { id, title } = req.body;
@@ -79,7 +75,7 @@ server.post('/projects', (req, res) => {
   // add to db
   projects.push(newProject);
 
-  // return all projects
+  // return projects
   return res.json(projects);
 });
 
@@ -88,7 +84,7 @@ server.get('/projects', (req, res) => {
   Lists all projects.
   
     Returns:
-      Returns all existing projects.
+      Returns projects.
   */
   return res.json(projects);
 });
@@ -109,11 +105,12 @@ server.put('/projects/:id', checkExists, (req, res) => {
   const { title } = req.body;
 
   // find project with maching id and update
-  projects.map(proj => {
-    if (proj.id === id) {
+  projects.map(project => {
+    if (project.id === id) {
       // project found
-      proj.title = title;
-      return res.json(proj);
+      project.title = title;
+
+      return res.json(project);
     }
   });
 });
@@ -130,10 +127,10 @@ server.delete('/projects/:id', checkExists, (req, res) => {
 
   const { id } = req.params;
 
-  projects.map(proj => {
-    if (proj.id === id) {
+  projects.map(project => {
+    if (project.id === id) {
       // get index of project in projects array
-      const index = projects.indexOf(proj);
+      const index = projects.indexOf(project);
       // delete project
       projects.splice(index, 1);
 
@@ -147,7 +144,7 @@ server.post('/projects/:id/tasks', checkExists, (req, res) => {
   Adds a new task to an existing project.
   
     Args:
-      id: The id of the project that the task will be added.
+      id: The id of the project to add the task.
       title: The task to be added.
   
     Retuns:
@@ -157,10 +154,10 @@ server.post('/projects/:id/tasks', checkExists, (req, res) => {
   const { id } = req.params;
   const { title } = req.body;
 
-  projects.map(proj => {
-    if (proj.id === id) {
+  projects.map(project => {
+    if (project.id === id) {
       // add task to project
-      proj.tasks.push(title);
+      project.tasks.push(title);
 
       return res.json(projects);
     }
@@ -168,5 +165,4 @@ server.post('/projects/:id/tasks', checkExists, (req, res) => {
 });
 
 
-// start server on port 3000
 server.listen(3000);

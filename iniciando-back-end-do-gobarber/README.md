@@ -1,3 +1,7 @@
+<h1 align="center">
+    <img alt="GoStack" src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/bootcamp-header.png" width="200px" />
+</h1>
+
 # Iniciando back-end do GoBarber
 
 ### Aulas
@@ -22,138 +26,165 @@
 
 ## Configurando estrutura
 
-- Criar projeto
-- Instalar express
-- Criar src com server, app e routes
-  - app: configuração do servidor express
-  - routes: rotas da aplicação
-  - server: cria o servidor
-- JSON Viwer. Extensão chrome p/ json: https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh
+- Criar projeto.  
+`mkdir <projName>; cd <projName>; yarn init -y`
+- Instalar express.
+- Configurar estrutura.
+  - app: configuração do servidor express.
+  - routes: rotas da aplicação.
+  - server: cria o servidor.
+  ```
+  - src
+    |- app.js
+    |- routes.js
+    |- server.js
+  ```
+- Separar arquivos facilita testes.
+- <a href="https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh
+">JSON Viwer</a>: Extensão p/ visualizar JSON.
 
 ## Nodemon & Sucrase
 
-- Nodemon. Detecta alterações no código e reinicia o servidor.
-- Sucrase. Utilizar nova sintaxe do JS no node (```import``` ao invés de ```require```)
-```
-yarn add sucrase nodemon -D
-```
-- Executar pelo sucrase diretamente
-```
-yarn sucrase-node src/server.js
-```
-ou criar script
-```
-"scripts": {
-  "dev": "nodemon src/server.js"
-}
-```
-e ```nodemon.json```
-```
-{
-  "execMap": {
-    "js": "node -r sucrase/register"
+- Nodemon: detecta alterações no código e reinicia o servidor.
+- Sucrase: possibilita utilizar a nova sintaxe do JS no node. (```import``` ao invés de ```require```).  
+`yarn add sucrase nodemon -D`
+- Executar pelo sucrase diretamente:  
+`yarn sucrase-node src/server.js`
+- Ou executar com script:  
+  ```
+  "scripts": {
+    "dev": "nodemon src/server.js"
   }
-}
-```
-- Alterar processo de debug do vscode
-```
-"scripts": {
-...
-    "dev.debug": "nodemon --inspect src/server.js"
+  ```
+  - Criar `nodemon.json`:
+  ```
+  {
+    "execMap": {
+      "js": "node -r sucrase/register"
+    }
   }
-```
-```
-yarn dev:debug
-```
-- Alterar launch.json
-```
-"request": "attach",
-"restart": true,
-"protocol": "inspector"
-"program": "${workspaceFolder}/index.js" // delete
-```
+  ```
+- Alterar processo de debug do VSCode.
+  ```
+  "scripts": {
+  ...
+      "dev.debug": "nodemon --inspect src/server.js"
+    }
+  ```
+  `yarn dev:debug`
+- Alterar `launch.json`:
+  ```
+  "request": "attach",
+  "restart": true,
+  "protocol": "inspector"
+  "program": "${workspaceFolder}/index.js" // delete this line
+  ```
 
 ## Conceitos do Docker
 
 - Como funciona?
-- Principais conceitos
+  - Criação de ambientes isolados (container);
+  - Containers expõe portas para comunicação;
+- Principais conceitos.
+  - Imagem;
+  - Container;
+  - Docker Registry (Docker Hub);
+  - Dockerfile;
 
 ## Configurando Docker
 
-https://docs.docker.com/docker-for-mac/
+<a href="https://docs.docker.com/docker-for-mac/">Docker Docs</a>.
 
-- Instalar (https://docs.docker.com/docker-for-mac/install/)
-- Criar serviço de db postgres (https://hub.docker.com/_/postgres)
-```
-docker run --name <dbname> -e POSTGRES_PASSWORD=<mysecretpassword> -p 5432:5432 -d postgres
-```
-- ```-p``` p/ redirecionamento de porta
-- Verificar se container esta executando ```docker ps```
-- Instalar Postbird p/ visualizar dados do postgres (https://electronjs.org/apps/postbird)
-- Parar containers ```docker stop <dbname>```
-- ```docker ps -a``` p/ visualizar todos os containers na maquina
-- Iniciar container ```docker start <dbname>```
-- ```docker logs <dbname>``` p/ visualizar logs caso erro ocorra
+- <a href="https://docs.docker.com/docker-for-mac/install/">Instalar (Mac)</a>.
+- Criar serviço de db postgres. (https://hub.docker.com/_/postgres).  
+  `docker run --name <containerName> -e POSTGRES_PASSWORD=<mysecretpassword> -p 5432:5432 -d postgres`  
+    - `-p` p/ redirecionamento de porta
+    - Verificar se container esta executando:  
+      `docker ps`
+    - Instalar <a href="https://electronjs.org/apps/postbird">Postbird</a> para visualizar dados do postgres.  
+    - Parar containers:  
+      `docker stop <containerName>`
+    - Visualizar todos os containers na maquina:  
+      `docker ps -a`
+    - Iniciar container:  
+      `docker start <containerName>`
+    -  Visualizar logs (caso erro ocorra):  
+      `docker logs <containerName>`
 
 ## Sequelize & MVC
 
-Sequelize - ORM pra node.js (relational dbs)
+Sequelize - ORM pra Node.js. (Relational Databases)
 
-- ORM
-- Manipulação dos dados
-- Migrations
-- Seeds
-- Arquitetura MVC
-- A face de um controller
+- ORM.
+  - Abstração do banco de dados;
+  - Tabelas viram models;
+- Manipulação dos dados.
+  - Sem SQL
+  - Apenas JavaScript;
+- Migrations.
+  - Controle de versão para base de dados;
+  - Instruçoes para criar, alterar ou remover tabelas ou colunas;
+  - Mantém a base atualizada entre desenvolvedores e ambiente de produção;
+  - Cada arquivo é uma migration e sua ordenação ocorre por data;
+  - É possivel desfazer migração durante desenvolvimento da feature;
+  - Migration não pode ser alterada caso tenha sido compartilhada ou esteja em produção;
+  - Cada migration deve alterar apenas uma tabela;
+  - Podem ser criadas várias migrations para alterações maiores;
+- Seeds.
+  - População da base de dados para desenvolvimento;
+  - Muito utilizado para testes;
+  - Executável apenas por código;
+  - Jamais usar em produção;
+  - Caso sejam dados que precisem ir para produção, utilizar migrations para manipular os dados das tabelas.
+- Arquitetura MVC.
+  - Model: abstração do banco;
+  - Controller: ponto de entrada das requisições;
+  - View: retorno ao cliente;
+- A face de um controller.
+  - Classes;
+  - Sempre retorna um JSON;
+  - Não chama outro controller/método;
+  - Quando criar um novo controller?
+  - Os 5 métodos do controller;
+  - Entidade;
 
 ## ESLint, Prettier & EditorConfig
 
 Padronizar escrita do código. 
-- Adicionar eslint
-```
-yarn add eslint -D
-```
-- Iniciar
-```
-yarn eslint --init
-```
-- Style guide airbnb
-- ```rm package-lock.json```
-- ```yarn```
-- Fazer fix on save
-- Adicionar configuraçoes do vs code ```settings.json```
-- Adicionar rules
-```
-rules: {
-  "prettier/prettier": "error",
-}
-```
-- Instalar Prettier
-```
-yarn add prettier eslint-config-prettier eslint-plugin-prettier -D
-```
-- Adicionar prettier ao ```extends```
-```
-extends: [..., 'prettier']
-```
-- Adicionar ```plugins```
-```
-plugins: ['prettier']
-```
-- Criar ```.prettierrc```
-```
-{
-  "singleQuote: true,
-  "trailingComma": "es5"
-}
-```
-- ```yarn eslint --fix <FOLDERTOFIX> --ext .js``` realizar fix automatico
-- Adicionar EditorConfig (equipe que utiliza editores diferentes)
-- ```.editorconfig```
-```
-trim_trailing_whitespace = true
-insert_final_newline = true
-```
+- Adicionar eslint:  
+  `yarn add eslint -D`
+- Iniciar:  
+  `yarn eslint --init`
+- Style guide Airbnb.
+- Remover arquivo gerado pelo NPM:  
+  `rm package-lock.json; yarn`
+- Para fazer fix on save adicionar configurações no VSCode `settings.json`.  
+- Adicionar rules ao `.eslintrc.js`:  
+  ```
+  rules: {
+    "prettier/prettier": "error",
+  }
+  ```
+- Instalar Prettier:  
+  `yarn add prettier eslint-config-prettier eslint-plugin-prettier -D`
+- Adicionar prettier ao `extends`:  
+  `extends: [..., 'prettier']`
+- Adicionar `plugins`:  
+  `plugins: ['prettier']`
+- Criar `.prettierrc` pra sobrescrever regras desejadas:  
+  ```
+  {
+    "singleQuote: true,
+    "trailingComma": "es5"
+  }
+  ```
+- Para realizar um fix automatico:  
+  `yarn eslint --fix <folderToFix> --ext .js` 
+- Gerar o EditorConfig (para equipes que utilizam editores de texto diferentes) `.editorconfig`:  
+  ```
+  trim_trailing_whitespace = true
+  insert_final_newline = true
+  ```
 
 ## Configurando Sequelize
 
