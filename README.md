@@ -1,8 +1,20 @@
-# Rocketseat - GoStack Bootcamp
+<h1 align="center">
+    <img alt="GoStack" src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/bootcamp-header.png" width="200px" />
+</h1>
 
-Treinamento imersivo nas tecnologias mais modernas de desenvolvimento web e mobile.
+<h2 align="center">
+  Rocketseat - GoStack Bootcamp    
+</h2>
 
-## Conteúdo
+<p align="center"> Treinamento imersivo nas tecnologias mais modernas de desenvolvimento web e mobile. 🎓</p>
+
+| Nota:           |
+| :-------------- |
+| Em progresso... |
+
+----
+
+## 📚 Conteúdo
 
 - Fase 1 - Bem-vindo ao bootcamp GoStack!
   - [x] Ambiente de desenvolvimento
@@ -23,7 +35,7 @@ Treinamento imersivo nas tecnologias mais modernas de desenvolvimento web e mobi
   - [ ] Primeiro projeto com React Native
   - [ ] Desafio 06 - Aplicação com React Native
 
-### Cronograma
+## 🗓 Cronograma
 
 - Semana 1
   - Intro node
