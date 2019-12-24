@@ -2,37 +2,26 @@ const express = require('express')
 
 const server = express()
 
-// informar que o corpo da requisição sera json
 server.use(express.json())
 
-/* CRUD */
+/* db (example) */
 const users = ['Richard', 'Rogerio', 'Rafael']
 
-/* Middlewares */
-/* Middleware global */ 
-// server.use((req, res, next) => {
-//   console.log('Requisição solicitada.')
-
-//   // continuar executando aplicação
-//   return next()
-// })
-
-/* Exemplo: Middleware de log */
+// Log middleware
 server.use((req, res, next) => {
   console.time('Request time')
   console.log('Método: ', req.method)
   console.log('URL: ', req.url)
   
-  // return next()
   next()
   
   console.log('Next finalizou.')
   console.timeEnd('Request time')
 })
 
-/* Middleware local */ 
+// Local middleware
 function checkUserExists(req, res, next) {
-  // verificar se informação name esta no corpo
+  /* Checks if name was inserted */
   if(!req.body.name) {
     return res.status(400).json({ error: 'Name is required.'})
   }
@@ -40,37 +29,32 @@ function checkUserExists(req, res, next) {
   return next()
 }
 
-// verificar se existe usuario no index
 function checkUserInArray(req, res, next) {
+  /* Checks if user at index exists */
   const user = users[req.params.index]
-  // verificar se informação name esta no corpo
-  // if(!users[req.params.index]) {
-  //   return res.status(400).json({ error: 'User does not exists.'})
-  // }
+
   if(!user) {
     return res.status(400).json({ error: 'User does not exist.'})
   }
 
-  // criar nova variavel no req com o user encontrado
+  // add user variable to req
   req.user = user
 
   return next()
 }
 
-// rota para listar todos usuarios
+// list all users
 server.get('/users', (req, res) => {
   return res.json(users)
 })
 
+// list user
 server.get('/users/:index', checkUserInArray, (req, res) => {
-  // const { index } = req.params
-
-  // return res.json(users[index])
-  // middleware adiciona user no req
+  // user already in req. (added by the middleware)
   return res.json(req.user)
 })
 
-// criar novo usuario
+// create user
 server.post('/users', checkUserExists, (req, res) => {
   const { name } = req.body
 
@@ -79,8 +63,7 @@ server.post('/users', checkUserExists, (req, res) => {
   return res.json(users)
 })
 
-// editar usuario
-// adicionando middleware local 
+// update user
 server.put('/users/:index', checkUserExists, checkUserInArray, (req, res) => {
   const { index } = req.params;
   const { name } = req.body
@@ -90,13 +73,12 @@ server.put('/users/:index', checkUserExists, checkUserInArray, (req, res) => {
   return res.json(users)
 })
 
-// excluir usuario
+// delete user
 server.delete('/users/:index', checkUserInArray, (req, res) => {
   const { index } = req.params;
 
   users.splice(index, 1)
 
-  // return res.json(users)
   return res.send()
 })
 

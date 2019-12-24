@@ -1,25 +1,27 @@
+<h1 align="center">
+    <img alt="GoStack" src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/bootcamp-header.png" width="200px" />
+</h1>
+
 # Ambiente e conceitos
 
-### Aulas
+## Conteúdo
 
-- [x] Instalando Node & NPM
-- [x] Instalação do Yarn
-- [x] Conceitos do Node.js
-- [x] Conceitos de API REST
-- [x] Criando aplicação
-- [x] Query & Route params
-- [x] Utilizando Insomnia
-- [x] Utilizando Nodemon
-- [x] CRUD
-- [x] Middlewares
-- [x] Debugando aplicação
+- [x] <a href="#instalando-node--npm">Instalando Node & NPM</a>  
+- [x] <a href="##instalação-do-yarn">Instalação do Yarn</a>  
+- [x] <a href="#conceitos-do-nodejs">Conceitos do Node.js</a>  
+- [x] <a href="#conceitos-de-api-rest">Conceitos de API REST</a>  
+- [x] <a href="#criando-aplicação">Criando aplicação</a>  
+- [x] <a href="#query--route-params">Query & Route params</a>  
+- [x] <a href="#utilizando-insomnia">Utilizando Insomnia</a>  
+- [x] <a href="#utilizando-nodemon">Utilizando Nodemon</a>  
+- [x] <a href="#crud">CRUD</a>  
+- [x] <a href="#middlewares">Middlewares</a>  
+- [x] <a href="#debugando-aplicação">Debugando aplicação</a>  
 
 ## Instalando Node & NPM
 
-- Preferência por versão estável
-- NVM (https://github.com/nvm-sh/nvm)
-- Instalar Node com nvm
-
+- Instalar <a href="https://github.com/nvm-sh/nvm">NVM</a>: Node Version Manager.
+- Instalar Node com NVM. (De preferência versão estável).
 ```
 nvm install <NODEVERSIONNUM>
 nvm alias default <NODEVERSIONNUM>
@@ -27,94 +29,122 @@ nvm alias default <NODEVERSIONNUM>
 
 ## Instalação do Yarn
 
-Gerenciador de pacotes.
-
-- Instalar Yarn (https://yarnpkg.com/en/docs/install#mac-stable)
-
-```
-brew install yarn --without-node
-```
+Gerenciador de pacotes como o NPM. Necessário ter Homebrew instalado.
+- Instalar <a href="https://yarnpkg.com/en/docs/install#mac-stable">Yarn</a>.  
+`brew install yarn --without-node`
 
 ## Conceitos do Node.js
 
-- O que é Node.js?
-- O que é o NPM?
-- Características do Node
-- Frameworks
+- O que é Node.js?  
+  - JavaScript no back-end;  
+  - Plataforma;  
+  - V8;  
+- O que é o NPM?  
+  - Instalar bibliotecas de terceiros;  
+  - Fornecer bibliotecas;  
+  - Por que Yarn?  
+- Características do Node.
+  - Arquitetura Event-loop;
+  - Node single-thread;
+  - Non-blocking I/O;
+- Frameworks.
+  - ExpressJS como base;
+  - Frameworks opinados;
 
 ## Conceitos de API REST
 
 - Como funciona?
-- Benefícios
-- JSON (JavaScript Obeject Notation)
-- Conteúdo da requisição
-- HTTP codes
+  - Requisição e resposta;
+  - Rotas utilizam métodos HTTP;
+- Benefícios.
+  - Múltiplos clientes, mesmo back-end;
+  - Protoclo de comunicação padronizado;
+- JSON: JavaScript Object Notation.
+- Conteúdo da requisição.
+  - Route; Route Params; Query Params;
+  - Headers; Body;
+- HTTP codes.
+  - 1xx: Informational;
+  - 2xx: Success;
+  - 3xx: Redirection;
+  - 4xx: Client Error;
+  - 5xx: Server Error;
 
 ## Criando aplicação
 
-- Criar package.json
-
+- Criar o `package.json`.  
+`yarn init -y`
+- Adicionar express.  
+`yarn add express`
+- Criar `index.js`.
 ```
-yarn init -y
-```
+const express = require('express');
 
-- Adicionar express
+const server = express();
 
+server.listen(3000)
 ```
-yarn add express
-```
-
-- Criar index.js
 
 ## Query & Route params
 
-- Query / Route params and request body
+- Query Params: `?=teste=1`.
+  - `req.query`
+- Route Params: `/users/1`.
+  - `req.params`
+- Request Body: `{ "name": "Marcos" }`.
 
 ## Utilizando Insomnia
 
-Aplicação para testar rotas
-
-- https://insomnia.rest/
-- Getting started: https://support.insomnia.rest/article/11-getting-started
+<a href="https://insomnia.rest/">Insomnia</a>. Software para testar as rotas da aplicação.  
+- <a href="https://support.insomnia.rest/article/11-getting-started">Getting started</a>.  
 
 ## Utilizando Nodemon
 
-Reinicia servidor de forma automática.  
-https://github.com/remy/nodemon
-
-- Instalar
-```
-yarn add nodemon -D
-```
-- Executar 
-```
-yarn nodemon index.js
-```
-ou criar script
-```
-"scripts": {
-  "dev": "nodemon index.js"
-}
-```
-```
-yarn dev
-```
+<a href="https://github.com/remy/nodemon">Nodemon</a>: Reinicia o servidor de forma automática.  
+- Instalar Nodemon.  
+`yarn add nodemon -D`
+- Executar.
+  - Opção 1:  
+    `yarn nodemon index.js`
+  - Opção 2:
+    - Criar script em `package.json`.
+    ```
+    "scripts": {
+      "dev": "nodemon index.js"
+    }
+    ```
+    - Executar.  
+      `yarn dev`
 
 ## CRUD
 
-- Create, Read, Update, Delete
+- Create.
+  - POST;
+  - `req.body`;
+- Update.
+  - PUT;
+  - `req.params`;
+  - `req.body`;
+- Read.
+  - GET;
+- Delete.
+  - DELETE
+  - `req.params`;
 
 ## Middlewares
 
-Base de toda aplicação express. Recebe req e res e manipula de alguma forma. Interceptador. Alterar variaveis req e res.
-
-- Middleware global
-- Middleware local
+- Função. 
+- Base de toda aplicação Express. 
+- Recebe e manipula `req` e `res`. Também pode receber `next` como parâmetro.
+- Interceptador. 
+- Alterar variáveis `req` e `res`. 
+- Middleware global.
+- Middleware local.
 
 ## Debugando aplicação
 
-Debug utilizando debugger do vscode
-
-- debug > launch.json
-- breakpoint
-- monitorar valor de variáveis
+Debug utilizando debugger do VSCode.
+- Iniciar.
+  - Debug > `launch.json`
+- Adicionar breakpoint.
+- Monitorar valor de variáveis.
