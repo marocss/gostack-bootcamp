@@ -13,7 +13,7 @@
 - [x] Model de usuário
 - [x] Criando loader de models
 - [x] Cadastro de usuários
-- [ ] Gerando hash da senha
+- [x] Gerando hash da senha
 - [ ] Conceitos de JWT
 - [ ] Autenticação JWT
 - [ ] Middleware de autenticação
@@ -357,3 +357,22 @@ const { id, name... } = await User.create(req.body)
 ```
 
 ## Gerando hash da senha
+
+- Adicionar `bcryptjs` p/ gerar hash
+```
+yarn add bcryptjs
+```
+- Importar bcrypt no model `User.js`
+- Criar campo virtual `password` e adicionar um hook p/ criar password_hash
+```
+this.addHook('beforeSave', async (user) => {
+  if(user.password) {
+    user.password_hash = await bcrypt.hash(user.password, 12)
+  }
+})
+
+// retornar model que acabou de ser inicializado
+return this
+```
+
+## Conceitos JWT

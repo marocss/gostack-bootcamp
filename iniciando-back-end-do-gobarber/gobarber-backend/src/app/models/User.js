@@ -1,4 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
+import bcrypt from 'bcryptjs';
 
 class User extends Model {
   // sequelize = conexão com o db
@@ -9,6 +10,7 @@ class User extends Model {
       {
         name: Sequelize.STRING,
         email: Sequelize.STRING,
+        password: Sequelize.VIRTUAL,
         password_hash: Sequelize.STRING,
         provider: Sequelize.BOOLEAN,
       },
@@ -17,6 +19,17 @@ class User extends Model {
         sequelize,
       }
     );
+
+    // antes de qualquer user ser salvo executa codigo automaticamente
+    this.addHook('beforeSave', async user => {
+      if (user.password) {
+        // user informou senha, gerar hash
+        // password, rounds de criptografia
+        user.password_hash = await bcrypt.hash(user.password, 12);
+      }
+    });
+
+    // return this;
   }
 }
 
