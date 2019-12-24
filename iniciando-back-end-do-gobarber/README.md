@@ -12,7 +12,7 @@
 - [x] Migration de usuário
 - [x] Model de usuário
 - [x] Criando loader de models
-- [ ] Cadastro de usuários
+- [x] Cadastro de usuários
 - [ ] Gerando hash da senha
 - [ ] Conceitos de JWT
 - [ ] Autenticação JWT
@@ -313,3 +313,47 @@ import './database'
 ```
 
 ## Cadastro de usuários
+
+Registro de usuarios dentro da API.  
+
+- Criar controller `controllers/UserController.js`
+- Estrutura de todo controller
+```
+import User from '../models/User'
+
+class UserController {
+
+}
+
+export default new UserController()
+```
+```
+async store(req, res) {
+  // verificar email
+  const userExists = await User.findOne({
+    where: {
+      email: req.body.email
+    }
+  })
+
+  if(userExists) {
+    return res.status(400).json()
+  }
+
+  const user = await User.create(req.body)
+
+  return res.json(user)
+}
+```
+- Importar controller e adicionar metodo na rota
+```
+import UserController...
+
+routes.post('/users', UserController.store)
+```
+- Filtrar campos necessarios p/ frontend
+```
+const { id, name... } = await User.create(req.body)
+```
+
+## Gerando hash da senha
