@@ -14,7 +14,7 @@
 - [x] Criando loader de models
 - [x] Cadastro de usuários
 - [x] Gerando hash da senha
-- [ ] Conceitos de JWT
+- [x] Conceitos de JWT
 - [ ] Autenticação JWT
 - [ ] Middleware de autenticação
 - [ ] Update do usuário
@@ -376,3 +376,11 @@ return this
 ```
 
 ## Conceitos JWT
+
+- Autenticação JWT
+- Token JWT
+- Headers
+- Payload
+- Assinatura
+
+## Autenticação JWT
