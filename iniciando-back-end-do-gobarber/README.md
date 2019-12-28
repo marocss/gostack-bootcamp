@@ -2,9 +2,14 @@
     <img alt="GoStack" src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/bootcamp-header.png" width="200px" />
 </h1>
 
-# Iniciando back-end do GoBarber
 
-### Aulas
+Iniciando back-end do GoBarber
+=================================
+
+---
+
+Conteúdo
+----
 
 - [x] [Configurando estrutura](#configurando-estrutura)
 - [x] [Nodemon & Sucrase](#nodemon--sucrase)
@@ -22,9 +27,10 @@
 - [x] [Autenticação JWT](#autenticação-jwt)
 - [x] [Middleware de autenticação](#middleware-de-autenticação)
 - [x] [Update do usuário](#update-do-usuário)
-- [ ] [Validando dados de entrada](#validando-dados-de-entrada)
+- [x] [Validando dados de entrada](#validando-dados-de-entrada)
 
-## Configurando estrutura
+Configurando estrutura
+----
 
 - Criar projeto.  
 `mkdir <projName>; cd <projName>; yarn init -y`
@@ -43,7 +49,8 @@
 - <a href="https://chrome.google.com/webstore/detail/json-viewer/gbmdgpbipfallnflgajpaliibnhdgobh
 ">JSON Viwer</a>: Extensão p/ visualizar JSON.
 
-## Nodemon & Sucrase
+Nodemon & Sucrase
+----
 
 - Nodemon: detecta alterações no código e reinicia o servidor.
 - Sucrase: possibilita utilizar a nova sintaxe do JS no node. (```import``` ao invés de ```require```).  
@@ -80,7 +87,8 @@
   "program": "${workspaceFolder}/index.js" // delete this line
   ```
 
-## Conceitos do Docker
+Conceitos do Docker
+----
 
 - Como funciona?
   - Criação de ambientes isolados (container);
@@ -91,7 +99,8 @@
   - Docker Registry (Docker Hub);
   - Dockerfile;
 
-## Configurando Docker
+Configurando Docker
+----
 
 <a href="https://docs.docker.com/docker-for-mac/">Docker Docs</a>.
 
@@ -111,7 +120,8 @@
     -  Visualizar logs (caso erro ocorra):  
       `docker logs <containerName>`
 
-## Sequelize & MVC
+Sequelize & MVC
+----
 
 Sequelize - ORM pra Node.js. (Relational Databases)
 
@@ -148,7 +158,8 @@ Sequelize - ORM pra Node.js. (Relational Databases)
   - Os 5 métodos do controller;
   - Entidade;
 
-## ESLint, Prettier & EditorConfig
+ESLint, Prettier & EditorConfig
+----
 
 Padronizar escrita do código. 
 - Adicionar eslint:  
@@ -186,7 +197,8 @@ Padronizar escrita do código.
   insert_final_newline = true
   ```
 
-## Configurando Sequelize
+Configurando Sequelize
+----
 
 - Configurar estrutura de pastas
 ```
@@ -239,7 +251,8 @@ module.exports = {
 yarn add pg pg-hstore
 ```
 
-## Migration de usuário
+Migration de usuário
+----
 
 - Criar primeira migration com sequelize-cli
 ```
@@ -290,7 +303,8 @@ yarn sequelize db:migrate
 - `sequelize db:migrate:undo` Para efetuar correções antes de compartilhar ou publicar codigo. desfaz ultima migration feita.
 - `sequelize db:migrate:undo:all` Desfaz todas as migrations feitas.
 
-## Model de usuário
+Model de usuário
+----
 
 - Criar model de usuario para manipular os dados. Criar, alterar, deletar usuarios
 - `models/User.js`
@@ -313,7 +327,8 @@ class User extends Model {
 export default User
 ```
 
-## Criando loader de models
+Criando loader de models
+----
 
 Realizar conexão com db definido em `config/database.js`. Carregar todos os models da aplicação.   
 - Criar `database/index.js`. Realiza conexão e carrega models
@@ -343,7 +358,8 @@ export default new Database()
 import './database'
 ```
 
-## Cadastro de usuários
+Cadastro de usuários
+----
 
 Registro de usuarios dentro da API.  
 
@@ -387,7 +403,8 @@ routes.post('/users', UserController.store)
 const { id, name... } = await User.create(req.body)
 ```
 
-## Gerando hash da senha
+Gerando hash da senha
+----
 
 - Adicionar `bcryptjs` p/ gerar hash
 ```
@@ -406,7 +423,8 @@ this.addHook('beforeSave', async (user) => {
 return this
 ```
 
-## Conceitos JWT
+Conceitos JWT
+----
 
 - Autenticação JWT
 - Token JWT
@@ -414,7 +432,8 @@ return this
 - Payload
 - Assinatura
 
-## Autenticação JWT
+Autenticação JWT
+----
 
 - Criar `SessionController.js`.
 ```
@@ -475,7 +494,8 @@ token: jwt.sign({id }, authConfig.secret , {
 })
 ```
 
-## Middleware de autenticação
+Middleware de autenticação
+----
 
 Bloquear o usuário a acessar alguma rota caso não esteja logado.
 
@@ -520,7 +540,8 @@ routes.use(authMiddleware)
 ```
 - Pode ser adicionado como middleware local ou middleware global, funcionando para todas as rotas que forem definidas depois dele.
 
-## Update do usuário
+Update do usuário
+----
 
 - Adicionar campo de `oldPassword` no corpo da requisição para usuário alterar senha.
 - Configurar método update do `UserController.js`
@@ -553,4 +574,64 @@ async update(req, res) {
 }
 ```
 
-## Validando dados de entrada
+Validando dados de entrada
+----
+
+Validação dos dados de entrada do backend. Adicionar validação no cadastro, update de usuario, criação de sessão.
+- Adicionar `yup`.
+- Yup: biblioteca de schema validation.
+- Editar método `store` do `UserController.js`:
+```
+// yup n possui export default
+import * as Yup from 'yup'
+
+async store(req, res) {
+  const schema = Yup.object().shape({
+    name: Yup.string().required(),
+    email: Yup.string().email().required(),
+    password: Yup.string().required().min(6)
+  })
+
+  if(!(await schema.isValid(req.body))) {
+    return res.status(400).json({ error: 'Validation failed.' })
+  }
+
+  const userExists = await User.findOne({ where: {email: req.body.email}})
+}
+```
+- Editar método `update`:
+```
+async store(req, res) {
+  // senha é obrigatoria caso usuário deseje alterar sua senha
+  // confirmação de senha é obrigatoria caso usuário deseje alterar sua senha
+  const schema = Yup.object().shape({
+    name: Yup.string(),
+    email: Yup.string().email(),
+    oldPassword: Yup.string().min(6),
+    password: Yup.string().min(6).when('oldPassword', (oldPassword, field) => 
+      oldPassword ? field.required() : field
+    ),
+    confirmPassword: Yup.string().when('password', (password, field) => 
+      password ? field.required().oneOf([Yup.ref('password')]) : field
+    )
+  })
+
+  if(!(await schema.isValid(req.body))) {
+    return res.status(400).json({ error: 'Validation failed.' })
+  }
+
+  const {email, oldPassword} = req.body
+}
+```
+- Editar `store` de `SessionController.js`: 
+```
+  const schema = Yup.object().shape({
+    email: Yup.string().email().required(),
+    password: Yup.string().required()
+  })
+
+  if(!(await schema.isValid(req.body))) {
+    return res.status(400).json({ error: 'Validation failed.' })
+  }
+
+```

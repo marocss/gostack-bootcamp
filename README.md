@@ -23,7 +23,7 @@
 - Fase 2 - Dominando Node.js!
   - [x] Ambiente e conceitos
   - [x] Desafio 01 - Conceitos do NodeJS
-  - [ ] Iniciando back-end do GoBarber
+  - [x] Iniciando back-end do GoBarber
   - [ ] Desafio 02 - Iniciando aplicação
   - [ ] Continuando API do GoBarber
   - [ ] Desafio 03 - Continuando aplicação
