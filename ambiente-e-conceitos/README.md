@@ -2,38 +2,48 @@
     <img alt="GoStack" src="https://rocketseat-cdn.s3-sa-east-1.amazonaws.com/bootcamp-header.png" width="200px" />
 </h1>
 
-# Ambiente e conceitos
 
-## Conteúdo
+Ambiente e conceitos
+======================
 
-- [x] <a href="#instalando-node--npm">Instalando Node & NPM</a>  
-- [x] <a href="##instalação-do-yarn">Instalação do Yarn</a>  
-- [x] <a href="#conceitos-do-nodejs">Conceitos do Node.js</a>  
-- [x] <a href="#conceitos-de-api-rest">Conceitos de API REST</a>  
-- [x] <a href="#criando-aplicação">Criando aplicação</a>  
-- [x] <a href="#query--route-params">Query & Route params</a>  
-- [x] <a href="#utilizando-insomnia">Utilizando Insomnia</a>  
-- [x] <a href="#utilizando-nodemon">Utilizando Nodemon</a>  
-- [x] <a href="#crud">CRUD</a>  
-- [x] <a href="#middlewares">Middlewares</a>  
-- [x] <a href="#debugando-aplicação">Debugando aplicação</a>  
+---
 
-## Instalando Node & NPM
+Conteúdo
+----
+
+- [x] [Instalando Node & NPM](#instalando-node--npm)
+- [x] [Instalação do Yarn](#instalação-do-yarn)
+- [x] [Conceitos do Node.js](#conceitos-do-nodejs)
+- [x] [Conceitos de API REST](#conceitos-de-api-rest")
+- [x] [Criando aplicação](#criando-aplicação)
+- [x] [Query & Route params](#query--route-params)
+- [x] [Utilizando Insomnia](#utilizando-insomnia)
+- [x] [Utilizando Nodemon](#utilizando-nodemon)
+- [x] [CRUD](#crud)
+- [x] [Middlewares](#middlewares)
+- [x] [Debugando aplicação](#debugando-aplicação)
+
+---
+
+Instalando Node & NPM
+----
 
 - Instalar <a href="https://github.com/nvm-sh/nvm">NVM</a>: Node Version Manager.
-- Instalar Node com NVM. (De preferência versão estável).
+- Instalar Node com NVM. (De preferência instalar a versão estável do node).
 ```
 nvm install <NODEVERSIONNUM>
 nvm alias default <NODEVERSIONNUM>
 ```
 
-## Instalação do Yarn
+Instalação do Yarn
+----
 
 Gerenciador de pacotes como o NPM. Necessário ter Homebrew instalado.
 - Instalar <a href="https://yarnpkg.com/en/docs/install#mac-stable">Yarn</a>.  
 `brew install yarn --without-node`
 
-## Conceitos do Node.js
+Conceitos do Node.js
+----
 
 - O que é Node.js?  
   - JavaScript no back-end;  
@@ -51,7 +61,8 @@ Gerenciador de pacotes como o NPM. Necessário ter Homebrew instalado.
   - ExpressJS como base;
   - Frameworks opinados;
 
-## Conceitos de API REST
+Conceitos de API REST
+----
 
 - Como funciona?
   - Requisição e resposta;
@@ -70,7 +81,8 @@ Gerenciador de pacotes como o NPM. Necessário ter Homebrew instalado.
   - 4xx: Client Error;
   - 5xx: Server Error;
 
-## Criando aplicação
+Criando aplicação
+----
 
 - Criar o `package.json`.  
 `yarn init -y`
@@ -85,7 +97,8 @@ const server = express();
 server.listen(3000)
 ```
 
-## Query & Route params
+Query & Route params
+----
 
 - Query Params: `?=teste=1`.
   - `req.query`
@@ -93,12 +106,14 @@ server.listen(3000)
   - `req.params`
 - Request Body: `{ "name": "Marcos" }`.
 
-## Utilizando Insomnia
+Utilizando Insomnia
+----
 
 <a href="https://insomnia.rest/">Insomnia</a>. Software para testar as rotas da aplicação.  
 - <a href="https://support.insomnia.rest/article/11-getting-started">Getting started</a>.  
 
-## Utilizando Nodemon
+Utilizando Nodemon
+----
 
 <a href="https://github.com/remy/nodemon">Nodemon</a>: Reinicia o servidor de forma automática.  
 - Instalar Nodemon.  
@@ -116,7 +131,8 @@ server.listen(3000)
     - Executar.  
       `yarn dev`
 
-## CRUD
+CRUD
+----
 
 - Create.
   - POST;
@@ -131,7 +147,8 @@ server.listen(3000)
   - DELETE
   - `req.params`;
 
-## Middlewares
+Middlewares
+----
 
 - Função. 
 - Base de toda aplicação Express. 
@@ -141,7 +158,8 @@ server.listen(3000)
 - Middleware global.
 - Middleware local.
 
-## Debugando aplicação
+Debugando aplicação
+----
 
 Debug utilizando debugger do VSCode.
 - Iniciar.

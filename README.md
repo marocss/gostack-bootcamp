@@ -12,9 +12,10 @@
 | :-------------- |
 | Em progresso... |
 
-----
+---
 
-## 📚 Conteúdo
+📚 Conteúdo
+----
 
 - Fase 1 - Bem-vindo ao bootcamp GoStack!
   - [x] Ambiente de desenvolvimento
@@ -35,14 +36,26 @@
   - [ ] Primeiro projeto com React Native
   - [ ] Desafio 06 - Aplicação com React Native
 
-## 🗓 Cronograma
+--- 
+
+🗓 Cronograma
+----
 
 - Semana 1
-  - Intro node
-  - Criando node
-  - Continuando node
-  - CSS Flexbox
+  - Introdução ao Node.js
+  - Criando projeto Node.js
+  - Continuando projeto Node.js
+  - CSS Flexbox (bônus)
   - UI Design (live)
   - Desafio 1
   - Desafio 2
   - Desafio 3
+
+- Semana 2
+  - Introdução ao React
+  - Primeiro projeto com ReactJS
+  - Primeiro projeto com React Native
+  - Documentação Front-end (live)
+  - Desafio 4
+  - Desafio 5
+  - Desafio 6
