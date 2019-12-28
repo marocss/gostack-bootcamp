@@ -22,6 +22,10 @@ class UserController {
     // retornar user criado
     return res.json(user);
   }
+
+  async update(req, res) {
+    return res.json({ ok: true });
+  }
 }
 
 export default new UserController();

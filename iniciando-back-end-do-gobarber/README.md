@@ -20,7 +20,7 @@
 - [x] [Gerando hash da senha](#gerando-hash-da-senha)
 - [x] [Conceitos de JWT](#conceitos-jwt)
 - [x] [Autenticação JWT](#autenticação-jwt)
-- [ ] [Middleware de autenticação](#middleware-de-autenticação)
+- [x] [Middleware de autenticação](#middleware-de-autenticação)
 - [ ] [Update do usuário](#update-do-usuário)
 - [ ] [Validando dados de entrada](#validando-dados-de-entrada)
 
@@ -456,7 +456,7 @@ return res.json({
   })
 })
 ```
-- Criar string segura: MD5 Online
+- Criar string segura: [MD5 Online](https://www.md5online.org/)
 - Adicionar rota em `routes.js`:
 ```
 routes.post('/sessions', SessionController.store)
@@ -477,3 +477,47 @@ token: jwt.sign({id }, authConfig.secret , {
 
 ## Middleware de autenticação
 
+Bloquear o usuário a acessar alguma rota caso não esteja logado.
+
+- Adicionar método update ao `UserController.js`:
+```
+async update(req, res) {
+  console.log(req.userId)
+
+  return res.json({ ok: true })
+}
+```
+- Criar rota.
+- Criar um middleware de autenticação `app/middlewares/auth.js`:
+```
+export default async (req, res, next) => {
+  const authHeader = req.headers.authorization
+
+  if(!authHeader) {
+    return res.status(401).json({ error: 'Token not provided.' })
+  }
+
+  const [, token] = authHeader.split(' ')
+
+  try {
+    const decoded = await promisify(jwt.verify)(token, authConfig.secret)
+
+    // decoded contem informações do payload do token
+    // incluir id do user no req
+    req.userId = decoded.id
+
+    return next()
+
+  } catch(err) {
+    return res.status(401).json({error: 'Token invalid'})
+  }
+}
+```
+- `promisify`: função do `util` que transforma função de callback em async/await.
+- Adicionar middleware ao arquivo `routes.js`:
+```
+routes.use(authMiddleware)
+```
+- Pode ser adicionado como middleware local ou middleware global, funcionando para todas as rotas que forem definidas depois dele.
+
+## Update do usuário
