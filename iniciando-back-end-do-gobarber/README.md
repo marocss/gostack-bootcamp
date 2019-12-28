@@ -6,23 +6,23 @@
 
 ### Aulas
 
-- [x] Configurando estrutura
-- [x] Nodemon & Sucrase
-- [x] Conceitos do Docker
-- [x] Configurando Docker
-- [x] Sequelize & MVC
-- [x] ESLint, Prettier & EditorConfig
-- [x] Configurando Sequelize
-- [x] Migration de usuário
-- [x] Model de usuário
-- [x] Criando loader de models
-- [x] Cadastro de usuários
-- [x] Gerando hash da senha
-- [x] Conceitos de JWT
-- [ ] Autenticação JWT
-- [ ] Middleware de autenticação
-- [ ] Update do usuário
-- [ ] Validando dados de entrada
+- [x] [Configurando estrutura](#configurando-estrutura)
+- [x] [Nodemon & Sucrase](#nodemon--sucrase)
+- [x] [Conceitos do Docker](#conceitos-do-docker)
+- [x] [Configurando Docker](#configurando-docker)
+- [x] [Sequelize & MVC](#sequelize--mvc)
+- [x] [ESLint, Prettier & EditorConfig](#eslint-prettier--editorconfig)
+- [x] [Configurando Sequelize](#configurando-sequelize)
+- [x] [Migration de usuário](#migration-de-usuário)
+- [x] [Model de usuário](#model-de-usuário)
+- [x] [Criando loader de models](#criando-loader-de-models)
+- [x] [Cadastro de usuários](#cadastro-de-usuários)
+- [x] [Gerando hash da senha](#gerando-hash-da-senha)
+- [x] [Conceitos de JWT](#conceitos-jwt)
+- [x] [Autenticação JWT](#autenticação-jwt)
+- [ ] [Middleware de autenticação](#middleware-de-autenticação)
+- [ ] [Update do usuário](#update-do-usuário)
+- [ ] [Validando dados de entrada](#validando-dados-de-entrada)
 
 ## Configurando estrutura
 
@@ -415,3 +415,65 @@ return this
 - Assinatura
 
 ## Autenticação JWT
+
+- Criar `SessionController.js`.
+```
+async store(req, res) {
+  const {email, password} = req.body
+  // verificar email
+  const user = await User.findOne({
+    where: {
+       email
+    }
+  })
+
+  if(!user) {
+    return res.status(401).json({ error: 'User not found.' })
+  }
+}
+```
+- Não fazer isso no `UserController.js` pois se trata de uma entidade diferente.
+- Apenas 5 métodos no controller. 
+- Adicionar extensão `jsonwebtoken`:
+`yarn add jsonwebtoken`
+- Criar verificação de senha dentro do model `User.js`:
+```
+checkPassword(paassowrd) {
+  return bcrypt.compare(password, this.password_hash)
+}
+```
+- Adicionar verificação ao `SessionController.js`: 
+```
+if(!(await user.checkPassword(password))) {
+  return res.status(401).json({ error: 'Password does not match' })
+}
+
+const { id } = user
+return res.json({
+  user,
+  token: jwt.sign({id }, <textoUnicoEmTodasAplicaçõesDoUniverso>, {
+    expiresIn: '7d'
+  })
+})
+```
+- Criar string segura: MD5 Online
+- Adicionar rota em `routes.js`:
+```
+routes.post('/sessions', SessionController.store)
+```
+- Separar informações sensiveis em um arquivo `config/auth.js`:
+```
+export default {
+  secret: <textoUnicoEmTodasAplicaçõesDoUniverso>,
+  expiresIn: '7d'
+}
+```
+- Alterar `SessionController.js`:
+```
+token: jwt.sign({id }, authConfig.secret , {
+  expiresIn: authConfig.expiresIn
+})
+```
+
+## Middleware de autenticação
+
