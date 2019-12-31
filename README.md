@@ -24,7 +24,7 @@
   - [x] Ambiente e conceitos
   - [x] Desafio 01 - Conceitos do NodeJS
   - [x] Iniciando back-end do GoBarber
-  - [ ] Desafio 02 - Iniciando aplicação
+  - [x] Desafio 02 - Iniciando aplicação
   - [ ] Continuando API do GoBarber
   - [ ] Desafio 03 - Continuando aplicação
 

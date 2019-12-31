@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="Gympoint" title="Gympoint" src=".github/logo.png" width="200px" />
+  <img alt="Gympoint" title="Gympoint" src="https://raw.githubusercontent.com/Rocketseat/bootcamp-gostack-desafio-02/master/.github/logo.png" width="200px" />
 </h1>
 
 <h3 align="center">
@@ -61,26 +61,26 @@ yarn sequelize seed:generate --name admin-user
 No arquivo gerado na pasta `src/database/seeds` adicione o código referente à criação de um usuário administrador:
 
 ```js
-const bcrypt = require("bcryptjs");
+const bcrypt = require('bcryptjs');
 
 module.exports = {
   up: QueryInterface => {
     return QueryInterface.bulkInsert(
-      "users",
+      'users',
       [
         {
-          name: "Administrador",
-          email: "admin@gympoint.com",
-          password_hash: bcrypt.hashSync("123456", 8),
+          name: 'Administrador',
+          email: 'admin@gympoint.com',
+          password_hash: bcrypt.hashSync('123456', 8),
           created_at: new Date(),
-          updated_at: new Date()
-        }
+          updated_at: new Date(),
+        },
       ],
-      {}
+      {},
     );
   },
 
-  down: () => {}
+  down: () => {},
 };
 ```
 
