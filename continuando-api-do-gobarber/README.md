@@ -13,8 +13,8 @@ Conteúdo
 
 - [x] [Configurando Multer](#configurando-multer)
 - [x] [Avatar do usuário](#avatar-do-usuário)
-- [ ] [Listagem de prestadores de serviço](#listagem-de-prestadores-de-serviço)
-- [ ] [Migration e model de agendamento](#)
+- [x] [Listagem de prestadores de serviço](#listagem-de-prestadores-de-serviço)
+- [ ] [Migration e model de agendamento](#migration-e-model-de-agendamento)
 - [ ] [Agendamento de serviço](#)
 - [ ] [Validações de agendamento](#)
 - [ ] [Listando agendamentos do usuário](#)
@@ -230,4 +230,88 @@ static associate(models) {
 - Adicionar campo `avatar_id` na requisição de update
 
 Listagem de prestadores de serviço
+----
+
+Fazer rota de listagem de todos prestadores de serviço da aplicação.
+
+- Criar `ProviderController.js`, um novo controller pois se trata de uma nova entidade.
+```
+import User from '../models/User'
+import File from '../models/File'
+
+class ProviderController {
+  async index(req, res) {
+    const providers = await User.findAll({
+      where: {provider: true},
+      attributes: ['id', 'name', 'email', 'avatar_id'], // informaçoes que deseja
+      include: [File] // retornar todos os dados do avatar não só o avatar_id
+    })
+
+    return res.json(providers)
+  }
+
+}
+
+export default new ProviderController()
+```
+- Adicionar codinome na associação no model `User`:
+```
+static associate(models){
+  this.belongsTo(models.File, {foreignKey: 'avatar_id', as: 'avatar'})
+}
+```
+- Alterar `include` para usar codinome:
+```
+const provider = await User.findAll({
+      where: {provider: true},
+      attributes: ['id', 'name', 'email', 'avatar_id'], // informaçoes que deseja
+      include: [{
+        model: File,
+        as: 'avatar',
+        attributes: ['name', 'path']
+      }] // retornar todos os dados do avatar não só o id
+    })
+
+    return res.json(providers)
+```
+- Adicionar `url` da imagem para o frontend exibir o arquivo em tela. Criar campo virtual no model `File`:
+```
+const baseURL = 'http://localhost:3333/files'
+
+...
+
+super.init({
+  name: Sequelize.STRING,
+  path: Sequelize.STRING,
+  url: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      return `${baseURL}/${this.path}` // retornar url
+    }
+  }
+}, {
+  sequelize
+})
+```
+```
+const provider = await User.findAll({
+      where: {provider: true},
+      attributes: ['id', 'name', 'email', 'avatar_id'], // informaçoes que deseja
+      include: [{
+        model: File,
+        as: 'avatar',
+        attributes: ['name', 'path', 'url]
+      }] // retornar todos os dados do avatar não só o id
+    })
+```
+- Adicionar recurso `express.static()` para servir arquivos:
+```
+this.server.use('/files', express.static(path.resolve(__dirname, '..', 'tmp', 'uploads')))
+```
+- Criar rota `/providers`.
+```
+routes.get('/providers', ProviderController.index)
+```
+
+Migration e model de agendamento
 ----
