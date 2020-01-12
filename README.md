@@ -36,6 +36,30 @@
   - [ ] Primeiro projeto com React Native
   - [ ] Desafio 06 - Aplicação com React Native
 
+- Fase 4 - Arquitetura Flux e React Hooks.
+  - [ ] Arquitetura Flux 
+  - [ ] Desafio 07 - Redux
+  - [ ] Utilizando React Hooks
+  - [ ] Desafio 08 - Hooks
+
+- Fase 5 - A fundo no React e React Native!
+  - [ ] GoBarber Web 
+  - [ ] Desafio 09 - Front-end do desafio final
+  - [ ] GoBarber Mobile
+  - [ ] Desafio 10 - Mobile do desafio final
+
+- Fase 6 - Testes e Deploy no Node.js.
+  - [ ] Testes no NodeJS
+  - [ ] Deploy no NodeJS
+
+- Fase 7 - Testes no ReactJS e React Native.
+  - [ ] Testes no ReactJS e React Native
+  - [ ] Deploy no ReactJS e React Native
+
+- Fase 8 - Recursos avaçãdos Node.js.
+  - [ ] Patterns e recursos avançados 
+  - [ ] Segurança no Node.js
+
 --- 
 
 🗓 Cronograma
@@ -59,3 +83,37 @@
   - Desafio 4
   - Desafio 5
   - Desafio 6
+
+- Semana 3
+  - Arquitetura Flux
+  - Utilizando React Hooks
+  - SSR com ReactJS (bônus)
+  - GraphQL (live)
+  - Expo (live)
+  - Desafio 7
+  - Desafio 8
+
+- Semana 4
+  - Criando projeto ReactJS
+  - Criando projeto React Native
+  - Animações com React Native (bônus)
+  - Desenvolvimento App Full-Stack (live)
+  - Por dentro do Time do Skylab (live)
+  - Desafio 9
+  - Desafio 10
+
+- Semana 5
+  - Testes no Node.js
+  - Deploy no Node.js
+  - Testes no React & React Native 
+  - Deploy no ReactJS
+  - Publicação no React Native 
+  - Por dentro do Time do Hubble (live)
+  - WebSocket com Express (live)
+
+- Semana 6
+  - Patterns avaçados no Node.js
+  - OmniStack em ação
+  - OmniStack SaaS e AdonisJS (bônus)
+  - Monorepo (live)
+  
